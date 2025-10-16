@@ -1,0 +1,7 @@
+[Unit]
+Description=Merge /etc/mc_menu.d into /etc/mc/mc.menu
+
+[Service]
+ExecStart=/bin/sh -c 'printf "" > /etc/mc/mc.menu; cat /etc/mc_menu.d/*.conf >> /etc/mc/mc.menu'
+
+[Install]

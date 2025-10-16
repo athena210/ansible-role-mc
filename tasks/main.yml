@@ -1,0 +1,6 @@
+---
+- name: Include tasks
+  ansible.builtin.include_tasks:
+    file: tasks.yml
+    apply:
+      become: true

@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for mcconfig
+
+mcconfig_install_mc: true
+mcconfig_apt_update: true
+mcconfig_userdirs:
+  - /root
