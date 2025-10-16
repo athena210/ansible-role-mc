@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch /etc/mc_menu.d and trigger mc-menu.service
+
+[Path]
+PathModified=/etc/mc_menu.d/
+
+[Install]
+WantedBy=multi-user.target

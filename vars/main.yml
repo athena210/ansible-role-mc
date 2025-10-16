@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for mcconfig
+
+mcconfig_supported_os:
+  - ubuntu
+  - debian
