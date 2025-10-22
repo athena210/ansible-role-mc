@@ -2,6 +2,10 @@
 ---
 # vars file for mcconfig
 
-mcconfig_supported_os:
-  - ubuntu
-  - debian
+mcconfig__os_const:
+  install_packages:
+    debian: [mc]
+    alpine: [mc]
+    suse: [mc]
+    archlinux: [mc]
+    redhat: [mc]
