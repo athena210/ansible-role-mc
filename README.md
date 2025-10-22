@@ -31,14 +31,12 @@ ansible-galaxy install -p roles -r requirements-galaxy.yml
 
 ## Использование роли
 
-Поддерживается только `debian` и `ubuntu` на архитектуре `amd_x64`.
-
 Параметры роли
 |Переменная|default|Описание|
 |-|-|-|
-|mcconfig_install_mc|true|Выполнять ли установку MC|
-|mcconfig_apt_update|true|Выполнять ли apt update при установке (часто необходимо на свежей ОС)|
-|mcconfig_userdirs|["/root"]|Массив домашних каталогов, куда будут скопированы настроки|
+|mcconfig**install_mc|true|Выполнять ли установку MC|
+|mcconfig**pkg_cache_update|true|Выполнять ли apt update при установке (часто необходимо на свежей ОС)|
+|mcconfig\_\_userdirs|["/root"]|Массив домашних каталогов, куда будут скопированы настроки|
 
 Пример плейбука
 

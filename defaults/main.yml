@@ -2,7 +2,7 @@
 ---
 # defaults file for mcconfig
 
-mcconfig_install_mc: true
-mcconfig_apt_update: true
-mcconfig_userdirs:
+mcconfig__install_mc: true
+mcconfig__pkg_cache_update: true
+mcconfig__userdirs:
   - /root

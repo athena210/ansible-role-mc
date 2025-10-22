@@ -1,23 +1,46 @@
 ---
 - name: Check whether your OS is supported
   ansible.builtin.assert:
+    quiet: true
     that:
-      - ansible_facts['architecture'] == 'x86_64'
-      - ansible_facts['distribution'] | lower in mcconfig_supported_os
+      - ansible_os_family | lower in mcconfig__os_const.install_packages.keys() | list
     fail_msg: Your OS is not supported
 
-- name: Install mc
+- name: Install mc with apt
   ansible.builtin.apt:
-    update_cache: "{{ mcconfig_apt_update }}"
-    name:
-      - mc
-  when: mcconfig_install_mc
+    update_cache: "{{ mcconfig__pkg_cache_update }}"
+    name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
+  when: ansible_os_family | lower == "debian" && mcconfig__install_mc
+
+- name: Install mc with apk
+  community.general.apk:
+    update_cache: "{{ mcconfig__pkg_cache_update }}"
+    name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
+  when: ansible_os_family | lower == "alpine" && mcconfig__install_mc
+
+- name: Install mc with zypper
+  community.general.zypper:
+    update_cache: "{{ mcconfig__pkg_cache_update }}"
+    name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
+  when: ansible_os_family | lower == "suse" && mcconfig__install_mc
+
+- name: Install mc with pacman
+  community.general.pacman:
+    update_cache: "{{ mcconfig__pkg_cache_update }}"
+    name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
+  when: ansible_os_family | lower == "archlinux" && mcconfig__install_mc
+
+- name: Install mc with dnf
+  ansible.builtin.dnf:
+    update_cache: "{{ mcconfig__pkg_cache_update }}"
+    name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
+  when: ansible_os_family | lower == "redhat" && mcconfig__install_mc
 
 - name: Get information about home directory
   ansible.builtin.stat:
     path: "{{ item }}"
   register: directory_info
-  loop: "{{ mcconfig_userdirs }}"
+  loop: "{{ mcconfig__userdirs }}"
 
 - name: Upload ini
   ansible.builtin.copy:
