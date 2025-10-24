@@ -10,31 +10,31 @@
   ansible.builtin.apt:
     update_cache: "{{ mcconfig__pkg_cache_update }}"
     name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
-  when: ansible_os_family | lower == "debian" && mcconfig__install_mc
+  when: ansible_os_family | lower == "debian" and mcconfig__install_mc
 
 - name: Install mc with apk
   community.general.apk:
     update_cache: "{{ mcconfig__pkg_cache_update }}"
     name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
-  when: ansible_os_family | lower == "alpine" && mcconfig__install_mc
+  when: ansible_os_family | lower == "alpine" and mcconfig__install_mc
 
 - name: Install mc with zypper
   community.general.zypper:
     update_cache: "{{ mcconfig__pkg_cache_update }}"
     name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
-  when: ansible_os_family | lower == "suse" && mcconfig__install_mc
+  when: ansible_os_family | lower == "suse" and mcconfig__install_mc
 
 - name: Install mc with pacman
   community.general.pacman:
     update_cache: "{{ mcconfig__pkg_cache_update }}"
     name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
-  when: ansible_os_family | lower == "archlinux" && mcconfig__install_mc
+  when: ansible_os_family | lower == "archlinux" and mcconfig__install_mc
 
 - name: Install mc with dnf
   ansible.builtin.dnf:
     update_cache: "{{ mcconfig__pkg_cache_update }}"
     name: "{{ mcconfig__os_const.install_packages[ansible_os_family | lower] }}"
-  when: ansible_os_family | lower == "redhat" && mcconfig__install_mc
+  when: ansible_os_family | lower == "redhat" and mcconfig__install_mc
 
 - name: Get information about home directory
   ansible.builtin.stat:
