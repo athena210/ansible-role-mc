@@ -39,7 +39,7 @@
 - name: Get information about home directory
   ansible.builtin.stat:
     path: "{{ item }}"
-  register: directory_info
+  register: mcconfig_home_directory_info
   loop: "{{ mcconfig__userdirs }}"
 
 - name: Upload ini
@@ -49,7 +49,7 @@
     owner: "{{ dirinfo.stat.pw_name }}"
     group: "{{ dirinfo.stat.gr_name }}"
     mode: "0640"
-  loop: "{{ directory_info.results }}"
+  loop: "{{ mcconfig_home_directory_info.results }}"
   loop_control:
     loop_var: dirinfo
     label: "{{ dirinfo.item }}"
@@ -61,7 +61,7 @@
     owner: "{{ dirinfo.stat.pw_name }}"
     group: "{{ dirinfo.stat.gr_name }}"
     mode: "0640"
-  loop: "{{ directory_info.results }}"
+  loop: "{{ mcconfig_home_directory_info.results }}"
   loop_control:
     loop_var: dirinfo
     label: "{{ dirinfo.item }}"
@@ -71,6 +71,7 @@
     remote_src: true
     src: /etc/mc/mc.menu
     dest: "/etc/mc/mc.menu_{{ now(fmt='%y%m%d%H%M%S') }}"
+    mode: "0644"
   when: ansible_os_family | lower == "debian"
 
 - name: Create menu directory
