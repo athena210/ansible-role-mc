@@ -16,10 +16,10 @@ git clone 'https://github.com/athena210/ansible-role-mc.git' mcconfig
 ```yaml
 ---
 roles:
-  - src: https://github.com/athena210/ansible-role-mc.git
-    name: mcconfig
+  - name: mcconfig
+    src: https://github.com/athena210/ansible-role-mc.git
     scm: git
-    version: master
+    version: main
 ```
 
 Запуск установки
